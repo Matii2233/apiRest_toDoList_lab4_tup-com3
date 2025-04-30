@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const BaklogSchema = new mongoose.Schema(
     {
-        tasks: [
+        tareas: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Task"

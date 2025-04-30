@@ -4,17 +4,17 @@ const Estados = ["Pendiente", "En proceso", "Completado", ""]
 
 const TaskSchema = new mongoose.Schema(
     {
-        title: String,
-        description: {
+        titulo: String,
+        descripcion: {
             type: String,
             required: false,
         },
-        limitDate: String,
+        fechaLimite: String,
         estado: {
             type: String,
             enum: Estados,
+            default: "Pendiente"
         },
-        color: String
     }
 )
 

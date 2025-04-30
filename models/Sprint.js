@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const SprintSchema = new mongoose.Schema(
     {
-        startDate: String,
-        endDate: String,
-        color: String,
-        tasks: [
+        nombre: String,
+        fechaInicio: String,
+        fechaCierre: String,
+        tareas: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Task"

@@ -5,10 +5,12 @@ import { config } from "dotenv"
 import taskRoutes from "./routes/task.routes.js"
 import sprintRoutes from "./routes/sprint.routes.js"
 import backlogRoutes from "./routes/backlog.routes.js"
+import cors from "cors"
 
 config()
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
 
 mongoose.connect(process.env.MONGO_URL, { dbName: process.env.MONGO_DB_NAME })

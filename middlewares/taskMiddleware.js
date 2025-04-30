@@ -1,3 +1,5 @@
+import { Task } from "../models/Task.js";
+
 export const taskMiddleware = async (req, res, next) => {
     let task;
     const { id } = req.params;

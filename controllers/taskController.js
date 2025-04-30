@@ -14,17 +14,16 @@ export const getAllTasks = async (req, res) => {
 
 // Crear una tarea
 export const createTask = async (req, res) => {
-    const { title, limitDate, color, estado, description } = req.body
+    const { titulo, fechaLimite, descripcion, estado } = req.body
 
-    if (!title || !limitDate || !color || estado !== "") {
-        return res.status(400).json({message: 'Los campos: "title", "limitDate" y "color" son obligatorios, y estado debe enviarse vacío'})
+    if (!titulo || !fechaLimite || !descripcion || estado !== "") {
+        return res.status(400).json({message: 'Los campos: "titulo", "fechaLimite", "descripcion" y "estado" son obligatorios, y estado debe enviarse vacío'})
     }
 
     const task = new Task({
-        title,
-        description: description || "",
-        limitDate,
-        color,
+        titulo,
+        descripcion: descripcion || "",
+        fechaLimite,
         estado
     })
 
@@ -45,10 +44,9 @@ export const getTaskById = (req, res) => {
 export const updateTask = async (req, res) => {
     try {
         const task = res.task
-        task.title = req.body.title || task.title
-        task.description = req.body.description || task.description
-        task.limitDate = req.body.limitDate || task.limitDate
-        task.color = req.body.color || task.color
+        task.titulo = req.body.titulo || task.titulo
+        task.descripcion = req.body.descripcion || task.descripcion
+        task.fechaLimite = req.body.fechaLimite || task.fechaLimite
         task.estado = req.body.estado || task.estado
 
         const updatedTask = await task.save()
@@ -63,7 +61,7 @@ export const deleteTask = async (req, res) => {
     try {
         const sprints = await Sprint.find()
         for (const sprint of sprints) {
-            const taskFound = sprint.tasks.find(task => task._id.toString() === req.params.id)
+            const taskFound = sprint.tareas.find(tarea => tarea._id.toString() === req.params.id)
             if (taskFound) {
                 return res.status(400).json({ message: `La tarea aún existe en el sprint con ID: ${sprint._id}` })
             }

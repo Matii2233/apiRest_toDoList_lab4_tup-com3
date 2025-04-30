@@ -1,3 +1,5 @@
+import { Sprint } from "../models/Sprint.js";
+
 export const sprintMiddleware = async (req, res, next) => {
     let sprint;
     const { id } = req.params;
